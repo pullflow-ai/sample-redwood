@@ -1,0 +1,8 @@
+[web]
+  port = 8888
+[studio]
+  [studio.graphiql]
+    [studio.graphiql.authImpersonation]
+      authProvider = "dbAuth"
+      email = "user@example.com"
+      userId = "1"
