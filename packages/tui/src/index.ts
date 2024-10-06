@@ -8,7 +8,7 @@ import { prompt as enquirerPrompt } from 'enquirer'
 import { UpdateManager } from 'stdout-update'
 
 /**
- * A default set of styling for the TUI, designed for a cohesive look and feel around the Redwood CLI, CRWA and vairous plugins
+ * A default set of styling for the TUI, designed for a cohesive look and feel around the Redwood CLI, CRWA and various plugins
  */
 export const RedwoodStyling = {
   error: chalk.bold.red,
@@ -87,36 +87,21 @@ export class ReactiveTUIContent {
     outStream?: stream.Readable
     frameInterval?: number
   }) {
-    if (options.mode) {
-      this.mode = options.mode
-    }
-    if (options.header !== undefined) {
-      this.header = options.header
-    }
-    if (options.content !== undefined) {
-      this.content = options.content
-    }
-    if (options.spinner) {
-      // TODO: Validate characters array has at least two characters
-      this.spinner = { ...this.spinner, ...options.spinner }
-    }
-    if (options.boxen) {
-      this.boxen = { ...this.boxen, ...options.boxen }
-    }
-    if (options.outStream) {
-      this.setOutStream(options.outStream)
-    }
-    if (options.frameInterval) {
-      // TODO: Validate > 0
-      this.frameInterval = options.frameInterval
-    }
+    const { mode, header, content, spinner, boxen, outStream, frameInterval } = options;
+
+    this.mode = mode || this.mode;
+    this.header = header !== undefined ? header : this.header;
+    this.content = content !== undefined ? content : this.content;
+    spinner && (this.spinner = { ...this.spinner, ...spinner }); // TODO: Validate characters array has at least two characters
+    boxen && (this.boxen = { ...this.boxen, ...boxen });
+    outStream && this.setOutStream(outStream);
+    frameInterval && (this.frameInterval = frameInterval); // TODO: Validate > 0
   }
 
   setOutStream(out: stream.Readable) {
     this.outStream = new stream.Writable({
       write: (chunk: Buffer, _encoding, next) => {
         if (this.content === 'stream') {
-          this.content += chunk.toString('utf-8')
         }
         next()
         return true
