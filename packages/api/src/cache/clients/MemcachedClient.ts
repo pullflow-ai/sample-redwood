@@ -6,13 +6,7 @@ export default class MemcachedClient extends BaseClient {
   client?: ClientType | null
   servers
   options
-
-  constructor(servers: string, options?: ClientOptions & ServerOptions) {
-    super()
-    this.servers = servers
-    this.options = options
-  }
-
+  
   async connect() {
     const { Client: MemCachedClient } = await import('memjs')
     this.client = MemCachedClient.create(this.servers, this.options)
