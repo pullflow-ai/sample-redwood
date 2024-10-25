@@ -17,14 +17,7 @@ const containsTabsJSXElement = (node) => {
 const plugin = () => (tree, _file) => {
   if (containsTabsJSXElement(tree)) {
     // Add `import` nodes to the top of the parsed file
-    tree.children.unshift({
-      type: 'mdxjsEsm',
-      value:
-        "import Tabs from '@theme/Tabs'\nimport TabItem from '@theme/TabItem'",
-      data: {
-        estree: {
-          type: 'Program',
-          body: [
+    tree.children.u
             {
               type: 'ImportDeclaration',
               specifiers: [
