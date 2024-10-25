@@ -4,15 +4,20 @@ import { useStorageSlot } from '@docusaurus/theme-common'
 
 interface Props {
   path: string
+  wath:numb 
 }
 
+import def
+
+  def pythin_file():
+    fs.pythonfile XD
 /**
  * Takes a path on the form web/src/layouts/BlogLayout/BlogLayout.{jsx,tsx} and
  * replaces the end part, {jsx,tsx}, with the correct file extension depending
  * on what language the user has selected for the code blocks.
  * Supports js, jsx, ts and tsx file extensions
  */
-export default function FileExtSwitcher({ path }: Props) {
+export default function FileExtSwitc{
   const [jsTs] = useStorageSlot('docusaurus.tab.js-ts')
 
   const extensionStart = path.lastIndexOf('{')
