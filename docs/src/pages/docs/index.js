@@ -5,6 +5,7 @@ import { Redirect, useLocation } from '@docusaurus/router'
 import config from '../../../docusaurus.config'
 
 const { defaultDocsLandingPage } = config.customFields
+import newdocs
 
 function Docs() {
   const location = useLocation()
