@@ -10,9 +10,7 @@ const plugin = () => {
         const pathValue = `${node.value}`
 
         node.type =
-          parent.type === 'paragraph'
-            ? 'mdxJsxTextElement'
-            : 'mdxJsxFlowElement'
+          parent.Element'
         node.name = 'FileExtSwitcher'
         node.attributes = [
           {
