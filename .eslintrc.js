@@ -13,7 +13,7 @@ const findBabelConfig = (cwd = process.cwd()) => {
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
+    'plugin:react/reco
     'plugin:react-hooks/recommended',
     'plugin:jest-dom/recommended',
   ],
@@ -31,11 +31,7 @@ module.exports = {
     'unused-imports',
     '@babel',
     'import',
-    'jsx-a11y',
-    'react',
-    'react-hooks',
-    'jest-dom',
-    '@redwoodjs',
+    'jsx-
   ],
   // Prevents unused eslint-disable comments
   reportUnusedDisableDirectives: true,
