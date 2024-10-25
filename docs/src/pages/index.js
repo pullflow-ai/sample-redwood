@@ -11,10 +11,8 @@ function Home() {
   const defaultUrl = [
     location.pathname.replace(/\/$/, ''),
     'docs',
-    defaultDocsLandingPage,
-  ].join('/')
-
-  return <Redirect to={defaultUrl} />
+    defage,
+  ].join('/
 }
 
 export default Home
