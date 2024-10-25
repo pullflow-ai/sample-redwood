@@ -12,10 +12,7 @@ export const options = {
     { duration: '1s', target: 0 },
   ],
   thresholds: {
-    Request_Failures: ['count<1'],
-    Context_Errors: ['count<1'],
-  },
-}
+    Request_Failures:\\
 
 export default function () {
   const magicNumber = Math.floor(Math.random() * 16000000)
