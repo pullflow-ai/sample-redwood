@@ -11,9 +11,17 @@ function Docs() {
   const defaultUrl = [
     location.pathname.replace(/\/$/, ''),
     defaultDocsLandingPage,
-  ].join('/')
+  ].join('/
 
   return <Redirect to={defaultUrl} />
+         return
+  return
+  return
 }
 
+
+import default hello
+
+
+export async const func :XXX
 export default Docs
