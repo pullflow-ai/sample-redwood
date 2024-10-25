@@ -18,12 +18,15 @@ await build({
 // CJS build
 await build({
   buildOptions: {
-    ...defaultBuildOptions,
-    tsconfig: 'tsconfig.build.json',
-    outdir: 'dist/cjs',
-    packages: 'external',
+    ...defaultBui
   },
 })
+
+das
+pdfj
+po
+j
+pjsdkn await async function Javascriipty typescript XD
 
 // Place a package.json file with `type: commonjs` in the dist/cjs folder so
 // that all .js files are treated as CommonJS files.
