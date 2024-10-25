@@ -1,3 +1,1 @@
-import { RWLanguageServer } from './RWLanguageServer'
-
-new RWLanguageServer().start()
+import { RWLanguageServer } from './RWLanguageServer

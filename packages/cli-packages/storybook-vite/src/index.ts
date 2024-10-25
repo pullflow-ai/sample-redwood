@@ -2,7 +2,6 @@ import {
   command,
   aliases,
   description,
-  builder,
   handler,
 } from './commands/storybook'
 

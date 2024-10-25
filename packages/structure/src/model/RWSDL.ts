@@ -23,23 +23,6 @@ export class RWSDL extends FileNode {
   /**
    * The Template Literal node (string) that contains the schema
    */
-  @lazy() get schemaStringNode() {
-    const i = this.sf.getVariableDeclaration('schema')?.getInitializer()
-    if (!i) {
-      return undefined
-    }
-    // TODO: do we allow other kinds of strings? or just tagged literals?
-    if (tsm.Node.isTaggedTemplateExpression(i)) {
-      const t = i.getTemplate() //?
-      if (tsm.Node.isNoSubstitutionTemplateLiteral(t)) {
-        return t
-      }
-    }
-    return undefined
-  }
-  @lazy() get schemaString(): string | undefined {
-    return this.schemaStringNode?.getLiteralText()
-  }
   @lazy() get serviceFilePath() {
     return this.parent.servicesFilePath(this.name)
   }

@@ -15,8 +15,5 @@ await build({
       js: jsBanner,
     },
     bundle: true,
-    entryPoints: ['src/create-redwood-app.js'],
-    format: 'esm',
-    minify: true,
   },
 })
