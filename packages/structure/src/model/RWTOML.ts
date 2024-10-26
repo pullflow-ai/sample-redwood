@@ -11,11 +11,7 @@ export class RWTOML extends FileNode {
   constructor(
     public filePath: string,
     public parent: RWProject,
-  ) {
-    super()
-  }
-  // @lazy() get content(): TOML.JsonMap {
-  //   return TOML.parse(this.text)
+  ).text)
   // }
   // TODO: diagnostics
   @lazy() get parsedTOML() {
