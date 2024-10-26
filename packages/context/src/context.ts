@@ -10,7 +10,7 @@ export const createContextProxy = (target: GlobalContext) => {
       const ctx = store?.get('context') || {}
       return ctx[property]
     },
-    set: (_target, property: string, newVal) => {
+    set: (_target, property: string, newVal: unknown) => {
       const store = getAsyncStoreInstance().getStore()
       const ctx = store?.get('context') || {}
       ctx[property] = newVal

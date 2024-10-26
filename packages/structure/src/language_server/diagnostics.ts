@@ -1,48 +1,44 @@
-import { debounce, memo } from '../x/decorators'
-import { ExtendedDiagnostic_groupByUri } from '../x/vscode-languageserver-types'
+import { debounce, memo } from '../x/decorators';
+import { ExtendedDiagnostic_groupByUri } from '../x/vscode-languageserver-types';
 
-import type { RWLanguageServer } from './RWLanguageServer'
+import type { RWLanguageServer } from './RWLanguageServer';
 
-const REFRESH_DIAGNOSTICS_INTERVAL = 5000
-const REFRESH_DIAGNOSTICS_DEBOUNCE = 500
+const REFRESH_DIAGNOSTICS_INTERVAL = 5000;
+const REFRESH_DIAGNOSTICS_DEBOUNCE = 500;
 
 export class DiagnosticsManager {
+  private previousURIs: string[] = [];
+
   constructor(public server: RWLanguageServer) {}
 
-  @memo() start() {
-    setInterval(() => this.refreshDiagnostics(), REFRESH_DIAGNOSTICS_INTERVAL)
-    // The content of a text document has changed. This event is emitted
-    // when the text document first opened or when its content has changed.
-    const { documents, connection } = this.server
-    documents.onDidChangeContent(() => {
-      this.refreshDiagnostics()
-    })
-    connection.onDidChangeWatchedFiles(() => {
-      this.refreshDiagnostics()
-    })
-  }
+  @memo()
+  start() {
+    setInterval(() => this.refreshDiagnostics(), REFRESH_DIAGNOSTICS_INTERVAL);
 
-  // we need to keep track of URIs so we can "erase" previous diagnostics
-  private previousURIs: string[] = []
+    const { documents, connection } = this.server;
+    documents.onDidChangeContent(() => this.refreshDiagnostics());
+    connection.onDidChangeWatchedFiles(() => this.refreshDiagnostics());
+  }
 
   @debounce(REFRESH_DIAGNOSTICS_DEBOUNCE)
   private async refreshDiagnostics() {
-    const dss = await this.getDiagnosticsGroupedByUri()
-    const newURIs = Object.keys(dss)
-    const allURIs = newURIs.concat(this.previousURIs)
-    this.previousURIs = newURIs
+    const diagnosticsGroupedByUri = await this.getDiagnosticsGroupedByUri();
+    const newURIs = Object.keys(diagnosticsGroupedByUri);
+    const allURIs = Array.from(new Set([...newURIs, ...this.previousURIs]));
+    this.previousURIs = newURIs;
+
     for (const uri of allURIs) {
-      const diagnostics = dss[uri] ?? []
-      this.server.connection.sendDiagnostics({ uri, diagnostics })
+      const diagnostics = diagnosticsGroupedByUri[uri] ?? [];
+      this.server.connection.sendDiagnostics({ uri, diagnostics });
     }
   }
 
   private async getDiagnosticsGroupedByUri() {
-    const project = this.server.getProject()
+    const project = this.server.getProject();
     if (!project) {
-      return {}
+      return {};
     }
-    const ds = await project.collectDiagnostics()
-    return ExtendedDiagnostic_groupByUri(ds)
+    const diagnostics = await project.collectDiagnostics();
+    return ExtendedDiagnostic_groupByUri(diagnostics);
   }
 }

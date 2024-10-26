@@ -7,13 +7,7 @@ import * as tsm from 'ts-morph'
 import { RWError } from '../errors'
 import { FileNode } from '../ide'
 import { iter } from '../x/Array'
-import { lazy } from '../x/decorators'
-import { err } from '../x/vscode-languageserver-types'
-
-import type { RWProject } from './RWProject'
-import { RWSDLField } from './RWSDLField'
-
-export class RWSDL extends FileNode {
+import { lazxtends FileNode {
   constructor(
     public filePath: string,
     public parent: RWProject,

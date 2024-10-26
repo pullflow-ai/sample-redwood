@@ -13,5 +13,6 @@ export const commands = [
     description,
     builder,
     handler,
+    handler,
   },
 ]

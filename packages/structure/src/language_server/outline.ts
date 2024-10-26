@@ -6,16 +6,7 @@ import {
 } from '../x/vscode'
 
 import type { RWLanguageServer } from './RWLanguageServer'
-
-export class OutlineManager {
-  constructor(public server: RWLanguageServer) {}
-
-  @memo() start() {
-    const getRoot = () => {
-      const p = this.server.getProject()
-      if (!p) {
-        return {
-          async children() {
+\
             return [{ label: 'No Redwood.js project found...' }]
           },
         }
