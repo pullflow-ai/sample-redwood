@@ -6,19 +6,7 @@ import { Range } from 'vscode-languageserver-types'
 
 import { RWError } from '../errors'
 import type { Decoration, Definition, DocumentLinkX, HoverX } from '../ide'
-import { BaseNode } from '../ide'
-import { validateRoutePath } from '../util'
-import { lazy } from '../x/decorators'
 import {
-  err,
-  LocationLike_toHashLink,
-  LocationLike_toLocation,
-  Location_fromFilePath,
-  Location_fromNode,
-  Position_translate,
-  Range_fromNode,
-} from '../x/vscode-languageserver-types'
-
 import type { RWRouter } from './RWRouter'
 import { advanced_path_parser } from './util/advanced_path_parser'
 
