@@ -10,14 +10,6 @@ import { Location_fromNode } from '../x/vscode-languageserver-types'
 import type { RWSDLField } from './RWSDLField'
 import type { RWService } from './RWService'
 
-export class RWServiceFunction extends BaseNode {
-  constructor(
-    public name: string,
-    public node: tsm.FunctionDeclaration | tsm.ArrowFunction,
-    public parent: RWService,
-  ) {
-    super()
-  }
 
   @lazy() get id() {
     // This is a compound ID (because it points to an internal node - one within a file)

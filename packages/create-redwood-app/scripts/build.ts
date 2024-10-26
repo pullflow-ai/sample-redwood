@@ -8,15 +8,22 @@ const __filename = (await import("node:url")).fileURLToPath(import.meta.url);
 const __dirname = (await import("node:path")).dirname(__filename);
 `
 
-await build({
-  buildOptions: {
-    ...defaultBuildOptions,
-    banner: {
-      js: jsBanner,
+async function runBuild() {
+  await build({
+    buildOptions: {
+      ...defaultBuildOptions,
+      banner: {
+        js: jsBanner,
+      },
+      bundle: true,
+      entryPoints: ['src/create-redwood-app.js'],
+      format: 'esm',
+      minify: true,
     },
-    bundle: true,
-    entryPoints: ['src/create-redwood-app.js'],
-    format: 'esm',
-    minify: true,
-  },
+  })
+}
+
+runBuild().catch((error) => {
+  console.error(error)
+  process.exit(1)
 })

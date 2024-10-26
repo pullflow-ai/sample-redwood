@@ -11,20 +11,7 @@ import { RWError } from '../errors'
 import type { CodeLensX } from '../ide'
 import { FileNode } from '../ide'
 import { iter } from '../x/Array'
-import { lazy, memo } from '../x/decorators'
-import { URL_file } from '../x/URL'
-import type { ExtendedDiagnostic } from '../x/vscode-languageserver-types'
-import {
-  err,
-  LocationLike_toLocation,
-  Location_fromNode,
-} from '../x/vscode-languageserver-types'
 
-import type { RWProject } from './RWProject'
-import { RWRoute } from './RWRoute'
-
-/**
- * one per Routes.js
  */
 export class RWRouter extends FileNode {
   constructor(

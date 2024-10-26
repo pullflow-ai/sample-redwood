@@ -9,17 +9,7 @@ const REFRESH_DIAGNOSTICS_DEBOUNCE = 500
 export class DiagnosticsManager {
   constructor(public server: RWLanguageServer) {}
 
-  @memo() start() {
-    setInterval(() => this.refreshDiagnostics(), REFRESH_DIAGNOSTICS_INTERVAL)
-    // The content of a text document has changed. This event is emitted
-    // when the text document first opened or when its content has changed.
-    const { documents, connection } = this.server
-    documents.onDidChangeContent(() => {
-      this.refreshDiagnostics()
-    })
-    connection.onDidChangeWatchedFiles(() => {
-      this.refreshDiagnostics()
-    })
+
   }
 
   // we need to keep track of URIs so we can "erase" previous diagnostics
@@ -27,12 +17,12 @@ export class DiagnosticsManager {
 
   @debounce(REFRESH_DIAGNOSTICS_DEBOUNCE)
   private async refreshDiagnostics() {
-    const dss = await this.getDiagnosticsGroupedByUri()
-    const newURIs = Object.keys(dss)
-    const allURIs = newURIs.concat(this.previousURIs)
+    const diagnosticsByUri = await this.getDiagnosticsGroupedByUri()
+    const newURIs = Object.keys(diagnosticsByUri)
+    const allURIs = Array.from(new Set([...newURIs, ...this.previousURIs]))
     this.previousURIs = newURIs
     for (const uri of allURIs) {
-      const diagnostics = dss[uri] ?? []
+      const diagnostics = diagnosticsByUri[uri] || []
       this.server.connection.sendDiagnostics({ uri, diagnostics })
     }
   }

@@ -16,13 +16,6 @@ import { lazy } from '../x/decorators'
 import { URL_file } from '../x/URL'
 import type { ExtendedDiagnostic } from '../x/vscode-languageserver-types'
 import {
-  Location_fromNode,
-  Position_fromTSMorphOffset,
-} from '../x/vscode-languageserver-types'
-
-import type { RWSDL } from './RWSDL'
-import type { RWServiceFunction } from './RWServiceFunction'
-
 export class RWSDLField extends BaseNode {
   constructor(
     public objectTypeDef: ObjectTypeDefinitionNode,

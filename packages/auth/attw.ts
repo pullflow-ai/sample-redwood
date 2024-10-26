@@ -7,17 +7,7 @@ interface Problem {
 
 await $({ nothrow: true })`yarn attw -P -f json > .attw.json`
 const output = await $`cat .attw.json`
-await $`rm .attw.json`
-
-const json = JSON.parse(output.stdout)
-
-if (!json.analysis.problems || json.analysis.problems.length === 0) {
-  console.log('No errors found')
-  process.exit(0)
-}
-
-if (
-  json.analysis.problems.every(
+await $`rm
     (problem: Problem) => problem.resolutionKind === 'node10',
   )
 ) {
