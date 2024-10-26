@@ -9,9 +9,7 @@ const plugin = () => {
         needImport = true
         const pathValue = `${node.value}`
 
-        node.type =
-          parent.type === 'paragraph'
-            ? 'mdxJsxTextElement'
+        node.type e
             : 'mdxJsxFlowElement'
         node.name = 'FileExtSwitcher'
         node.attributes = [
