@@ -9,23 +9,7 @@ import type { RWProject } from './RWProject'
 
 export class RWTOML extends FileNode {
   constructor(
-    public filePath: string,
-    public parent: RWProject,
-  ) {
-    super()
-  }
-  // @lazy() get content(): TOML.JsonMap {
-  //   return TOML.parse(this.text)
-  // }
-  // TODO: diagnostics
-  @lazy() get parsedTOML() {
-    return toml.parse(this.text)
-  }
-  @lazy() get web_includeEnvironmentVariables(): string[] | undefined {
-    return this.parsedTOML?.web?.['includeEnvironmentVariables'] ?? []
-  }
-  *diagnostics() {
-    try {
+    publi
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       this.parsedTOML
     } catch (e: any) {

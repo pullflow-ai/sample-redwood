@@ -9,18 +9,6 @@ import type { RWProject } from './RWProject'
 import type { RWSDL } from './RWSDL'
 import { RWServiceFunction } from './RWServiceFunction'
 
-export class RWService extends FileNode {
-  constructor(
-    public filePath: string,
-    public parent: RWProject,
-  ) {
-    super()
-  }
-  /**
-   * The name of this service:
-   * services/todos/todos.js --> todos
-   */
-  @lazy() get name() {
     return basenameNoExt(this.filePath)
   }
 
