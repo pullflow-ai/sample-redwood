@@ -5,17 +5,6 @@ module.exports = {
     {
       type: 'category',
       label: 'Tutorial',
-      items: [
-        { type: 'doc', label: 'Foreword', id: 'tutorial/foreword' },
-        {
-          'Chapter 0': ['tutorial/chapter0/what-is-redwood'],
-        },
-        {
-          'Chapter 1': [
-            'tutorial/chapter1/prerequisites',
-            'tutorial/chapter1/installation',
-            'tutorial/chapter1/file-structure',
-            'tutorial/chapter1/first-page',
             'tutorial/chapter1/second-page',
             'tutorial/chapter1/layouts',
           ],
