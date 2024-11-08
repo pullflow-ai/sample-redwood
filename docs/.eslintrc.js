@@ -1,6 +1,5 @@
 module.exports = {
   env: {
     commonjs: true,
-    node: true,
-  },
+    node: true
 }
