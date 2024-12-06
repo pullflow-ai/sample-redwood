@@ -1,7 +1,7 @@
 // We only want Netlify to build the site if a PR changes files in this directory (./docs).
 // See https://docs.netlify.com/configure-builds/ignore-builds.
 // Netlify runs this via Node.js v16.
-
+// comment
 import { execSync } from 'node:child_process'
 
 async function main() {
