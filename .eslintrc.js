@@ -9,6 +9,7 @@ const findBabelConfig = (cwd = process.cwd()) => {
   }
   return configPath
 }
+//comment
 
 module.exports = {
   extends: [
